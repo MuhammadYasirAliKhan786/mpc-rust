@@ -1,0 +1,6 @@
+{
+  "name": "MPC-Rust: Media Player Classic Home Cinema (Cross-Platform)",
+  "description": "Complete Rust rebuild of Media Player Classic (MPC-HC) for Windows, macOS, and Linux (Ubuntu) featuring native OS UI frameworks, hardware video acceleration, custom shaders, and cross-platform architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
