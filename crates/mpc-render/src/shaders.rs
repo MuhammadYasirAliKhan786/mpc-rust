@@ -8,7 +8,22 @@ pub enum MpcShader {
     Levels16To235,
     EdgeDetect,
     HdrAcesTonemap,
+    CrtScanlines,
     NightVision,
+}
+
+impl MpcShader {
+    pub fn name(&self) -> &'static str {
+        match self {
+            MpcShader::PassThrough => "None (Pass-Through)",
+            MpcShader::SharpenComplex2 => "Sharpen Complex 2",
+            MpcShader::Levels16To235 => "Levels 16-235 -> 0-255 (PC Range)",
+            MpcShader::EdgeDetect => "Edge Detect & Enhance",
+            MpcShader::HdrAcesTonemap => "ACES Film HDR Tonemap",
+            MpcShader::CrtScanlines => "CRT Scanlines & Phosphor",
+            MpcShader::NightVision => "Night Vision (Thermal IR)",
+        }
+    }
 }
 
 /// The legendary MPC-HC "Sharpen Complex 2" pixel shader

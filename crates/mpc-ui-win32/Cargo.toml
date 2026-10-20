@@ -8,8 +8,8 @@ license.workspace = true
 mpc-core = { path = "../mpc-core" }
 mpc-render = { path = "../mpc-render" }
 mpc-audio = { path = "../mpc-audio" }
-tokio.workspace = true
-tracing.workspace = true
+crossbeam-channel.workspace = true
+parking_lot.workspace = true
 
 [target.'cfg(target_os = "windows")'.dependencies]
 windows = { version = "0.58", features = [

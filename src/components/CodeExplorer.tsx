@@ -160,16 +160,16 @@ export const CodeExplorer: React.FC<CodeExplorerProps> = ({ isOpen, onClose }) =
             <div className="p-2.5 bg-[#121317] border-t border-[#262830] text-[11px] text-gray-400 space-y-1">
               <div className="flex items-center gap-1 font-semibold text-gray-200">
                 <Terminal className="w-3 h-3 text-emerald-400" />
-                <span>Build Commands:</span>
+                <span>Build &amp; Run Commands:</span>
               </div>
               <div className="font-mono text-[10px] text-emerald-400 truncate">
-                Win: cargo build --release -p mpc-ui-win32
+                Win: cargo run --release -p mpc-ui-win32
               </div>
               <div className="font-mono text-[10px] text-indigo-400 truncate">
-                Mac: cargo build --release -p mpc-ui-macos
+                Mac: cargo run --release -p mpc-ui-macos
               </div>
               <div className="font-mono text-[10px] text-amber-400 truncate">
-                Linux: cargo build --release -p mpc-ui-linux
+                Linux: cargo run --release -p mpc-ui-linux
               </div>
             </div>
           </div>

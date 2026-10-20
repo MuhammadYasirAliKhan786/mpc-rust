@@ -1,13 +1,17 @@
 //! MPC-Rust Native macOS Cocoa / AppKit UI
 //! Embeds high-performance Metal layer inside native NSWindow with full menu bar integration.
 
-#![cfg(target_os = "macos")]
-
-use objc2::rc::Retained;
-use objc2_app_kit::{NSApplication, NSApplicationActivationPolicy, NSWindow, NSMenu, NSMenuItem};
-use objc2_foundation::NSString;
+#[cfg(target_os = "macos")]
+mod macos_app {
+    pub fn run() {
+        println!("Starting MPC-Rust for macOS (Cocoa Native + Apple VideoToolbox / Metal)...");
+    }
+}
 
 fn main() {
-    println!("Starting MPC-Rust for macOS (Cocoa Native + Apple VideoToolbox / Metal)...");
-    // Connects NSApplication and CAMetalLayer hardware canvas
+    #[cfg(target_os = "macos")]
+    macos_app::run();
+
+    #[cfg(not(target_os = "macos"))]
+    println!("mpc-ui-macos is the native macOS Cocoa/AppKit binary. On Linux use mpc-ui-linux; on Windows use mpc-ui-win32.");
 }

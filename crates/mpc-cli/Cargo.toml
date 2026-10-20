@@ -8,5 +8,5 @@ license.workspace = true
 mpc-core = { path = "../mpc-core" }
 mpc-render = { path = "../mpc-render" }
 mpc-audio = { path = "../mpc-audio" }
-tokio.workspace = true
+crossbeam-channel.workspace = true
 anyhow.workspace = true

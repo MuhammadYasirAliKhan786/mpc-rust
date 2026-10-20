@@ -4,6 +4,10 @@ pub const EQ_BANDS: [f32; 10] = [
     31.25, 62.5, 125.0, 250.0, 500.0, 1000.0, 2000.0, 4000.0, 8000.0, 16000.0,
 ];
 
+pub const EQ_LABELS: [&str; 10] = [
+    "32Hz", "64Hz", "125Hz", "250Hz", "500Hz", "1kHz", "2kHz", "4kHz", "8kHz", "16kHz",
+];
+
 #[derive(Clone, Copy)]
 pub struct BiquadFilter {
     b0: f32,
@@ -57,7 +61,9 @@ impl BiquadFilter {
 
 pub struct Equalizer10Band {
     filters: [BiquadFilter; 10],
-    gains: [f32; 10],
+    pub gains: [f32; 10],
+    pub enabled: bool,
+    pub sample_rate: f32,
 }
 
 impl Equalizer10Band {
@@ -69,6 +75,8 @@ impl Equalizer10Band {
         Self {
             filters,
             gains: [0.0; 10],
+            enabled: true,
+            sample_rate,
         }
     }
 
@@ -84,10 +92,31 @@ impl Equalizer10Band {
         }
     }
 
+    pub fn reset(&mut self) {
+        for i in 0..10 {
+            self.set_band_gain(i, 0.0, self.sample_rate);
+        }
+    }
+
     pub fn process_sample(&mut self, mut sample: f32) -> f32 {
+        if !self.enabled {
+            return sample;
+        }
         for filter in &mut self.filters {
             sample = filter.process(sample);
         }
         sample.clamp(-1.0, 1.0)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_flat_eq_unity_gain() {
+        let mut eq = Equalizer10Band::new(48_000.0);
+        let out = eq.process_sample(0.5);
+        assert!((out - 0.5).abs() < 1e-4);
     }
 }
