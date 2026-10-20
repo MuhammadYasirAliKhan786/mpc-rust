@@ -1,0 +1,12 @@
+[package]
+name = "mpc-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+mpc-core = { path = "../mpc-core" }
+mpc-render = { path = "../mpc-render" }
+mpc-audio = { path = "../mpc-audio" }
+tokio.workspace = true
+anyhow.workspace = true

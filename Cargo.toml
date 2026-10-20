@@ -1,0 +1,49 @@
+[workspace]
+members = [
+    "crates/mpc-core",
+    "crates/mpc-render",
+    "crates/mpc-audio",
+    "crates/mpc-ui-win32",
+    "crates/mpc-ui-macos",
+    "crates/mpc-ui-linux",
+    "crates/mpc-cli",
+]
+resolver = "2"
+
+[workspace.package]
+version = "2.2.0"
+authors = ["MPC-Rust Project Contributors <mpc-rust@github.com>"]
+edition = "2021"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/mpc-hc/mpc-hc"
+
+[workspace.dependencies]
+# Async runtime & lock-free queues
+tokio = { version = "1.38", features = ["full"] }
+crossbeam-channel = "0.5"
+parking_lot = "0.12"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Media Demux & Codec bindings
+ffmpeg-next = "7.0"
+
+# GPU & Hardware Acceleration
+wgpu = "0.20"
+raw-window-handle = "0.6"
+
+# Audio I/O & DSP
+cpal = "0.15"
+rubato = "0.15"
+
+# Serialization & Error handling
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"

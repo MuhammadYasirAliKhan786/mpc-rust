@@ -1,0 +1,16 @@
+[package]
+name = "mpc-ui-linux"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+mpc-core = { path = "../mpc-core" }
+mpc-render = { path = "../mpc-render" }
+mpc-audio = { path = "../mpc-audio" }
+tokio.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+gtk4 = "0.9"
+libadwaita = "0.7"
+zbus = "4.2"

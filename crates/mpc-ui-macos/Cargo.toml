@@ -1,0 +1,17 @@
+[package]
+name = "mpc-ui-macos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+mpc-core = { path = "../mpc-core" }
+mpc-render = { path = "../mpc-render" }
+mpc-audio = { path = "../mpc-audio" }
+tokio.workspace = true
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.5"
+objc2-app-kit = "0.2"
+objc2-foundation = "0.2"
+metal = "0.28"
